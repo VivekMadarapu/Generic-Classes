@@ -1,0 +1,72 @@
+public class ArrayStack<T> {
+
+    private int top;
+    private T[] stack;
+
+    public ArrayStack(){
+        top = -1;
+        stack = new T[10];
+    }
+
+    public void push(T value) {
+        if(!this.isFull()) {
+            stack[top + 1] = value;
+            top++;
+        }
+    }
+
+    public T pop() {
+        if(!this.isEmpty()) {
+            T tempTop = stack[top];
+            stack[top] = null;
+            top--;
+            return tempTop;
+        }
+        else{
+            throw new ArrayIndexOutOfBoundsException();
+        }
+    }
+
+    public T peek() {
+        if(top >= 0){
+            return stack[top];
+        }
+        throw new ArrayIndexOutOfBoundsException();
+    }
+
+    public int size() {
+        return top+1;
+    }
+
+    public boolean isEmpty() {
+        return top==-1;
+    }
+
+    public boolean isFull() {
+        return top==stack.length-1;
+    }
+
+    public void clear() {
+        top = -1;
+        stack = new T[10];
+    }
+
+    public String ArrayToString() {
+
+        for(T i : stack){
+            System.out.println("[ " + i + "\t]");
+        }
+        return null;
+    }
+
+    public String toString(){
+        for(int i = 0; i <= top; i++) {
+            if (i >= 0){
+                System.out.print(stack[i] + "\n");
+            }
+        }
+        return null;
+    }
+
+
+}
