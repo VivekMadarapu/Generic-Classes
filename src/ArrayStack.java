@@ -1,11 +1,15 @@
+import org.jetbrains.annotations.Contract;
+
 public class ArrayStack<T> {
 
     private int top;
+    private int size;
     private T[] stack;
 
-    public ArrayStack(){
+    public ArrayStack(int size){
         top = -1;
-        stack = new T[10];
+        this.size = size;
+        stack = (T[]) new Object[size];
     }
 
     public void push(T value) {
@@ -48,7 +52,7 @@ public class ArrayStack<T> {
 
     public void clear() {
         top = -1;
-        stack = new T[10];
+        stack = (T[]) new Object[size];
     }
 
     public String ArrayToString() {
