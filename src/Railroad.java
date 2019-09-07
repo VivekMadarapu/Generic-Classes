@@ -34,23 +34,35 @@ public class Railroad {
                 trackA.push(i);
             }
             station = new ArrayStack<>(size);
+            System.out.println();
         }
         else{
             String tempLine = line;
             boolean isValid = true;
             while(tempLine.length() != 0){
-                if(tempLine.charAt(0) == trackA.peek()){
+                if(!trackA.isEmpty() && tempLine.charAt(0) == trackA.peek()){
                     tempLine = tempLine.substring(1);
                 }
                 else{
-                    station.push(trackA.pop());
-                    if(tempLine.charAt(0) == station.peek()){
-
+                    if(!trackA.isEmpty()) {
+                        station.push(trackA.pop());
                     }
-                    else if(trackA.isEmpty()){
-                        isValid = false;
+                    else {
+                        if (tempLine.charAt(0) == station.peek()) {
+
+                        } else if (trackA.isEmpty()) {
+                            isValid = false;
+
+
+                        }
                     }
                 }
+            }
+            if(isValid){
+                System.out.println("Yes");
+            }
+            else {
+                System.out.println("No");
             }
         }
     }

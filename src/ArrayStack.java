@@ -1,5 +1,3 @@
-import org.jetbrains.annotations.Contract;
-
 public class ArrayStack<T> {
 
     private int top;
@@ -27,7 +25,7 @@ public class ArrayStack<T> {
             return tempTop;
         }
         else{
-            throw new ArrayIndexOutOfBoundsException();
+            throw new ArrayIndexOutOfBoundsException("popped empty stack");
         }
     }
 
@@ -35,7 +33,7 @@ public class ArrayStack<T> {
         if(top >= 0){
             return stack[top];
         }
-        throw new ArrayIndexOutOfBoundsException();
+        throw new ArrayIndexOutOfBoundsException("peeked empty stack");
     }
 
     public int size() {
