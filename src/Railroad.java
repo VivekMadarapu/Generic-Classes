@@ -45,6 +45,7 @@ public class Railroad {
                 else{
                     station.push(trackA.pop());
                     if(tempLine.charAt(0) == station.peek()){
+
                     }
                     else if(trackA.isEmpty()){
                         isValid = false;
