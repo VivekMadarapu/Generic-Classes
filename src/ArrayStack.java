@@ -62,10 +62,8 @@ public class ArrayStack<T> {
     }
 
     public String toString(){
-        for(int i = 0; i <= top; i++) {
-            if (i >= 0){
-                System.out.print(stack[i] + "\n");
-            }
+        for(int i = top; i >= 0; i--) {
+            System.out.print(stack[i] + "\n");
         }
         return null;
     }

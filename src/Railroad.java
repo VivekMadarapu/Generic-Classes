@@ -5,6 +5,8 @@ import java.util.Scanner;
 public class Railroad {
 
     Scanner file;
+    ArrayStack<Integer> trackA = new ArrayStack<>(1000);
+    ArrayStack<Integer> station = new ArrayStack<>(1000);
 
     public Railroad(String path){
         try {
@@ -17,52 +19,56 @@ public class Railroad {
     public void run(){
         int size = file.nextInt();
         file.nextLine();
-        ArrayStack<Integer> trackA = new ArrayStack<>(size);
+
         for(int i = size; i > 0;i--){
             trackA.push(i);
         }
-        ArrayStack<Integer> station = new ArrayStack<>(size);
-        String line =  file.nextLine();
-        if(line.length() == 1 && Integer.parseInt(line) == 0){
-            line = file.nextLine();
-            size = Integer.parseInt(line);
-            if(size == 0){
-                return;
-            }
-            trackA = new ArrayStack<>(size);
-            for(int i = size; i > 0;i--){
-                trackA.push(i);
-            }
-            station = new ArrayStack<>(size);
-            System.out.println();
-        }
-        else{
-            String tempLine = line;
-            boolean isValid = true;
-            while(tempLine.length() != 0){
-                if(!trackA.isEmpty() && tempLine.charAt(0) == trackA.peek()){
-                    tempLine = tempLine.substring(1);
+
+        while(file.hasNext()) {
+            String line = file.nextLine();
+            if (line.length() == 1 && Integer.parseInt(line.trim()) == 0) {
+                line = file.nextLine();
+                size = Integer.parseInt(line);
+                if (size == 0) {
+                    return;
                 }
-                else{
-                    if(!trackA.isEmpty()) {
-                        station.push(trackA.pop());
-                    }
-                    else {
-                        if (tempLine.charAt(0) == station.peek()) {
-
-                        } else if (trackA.isEmpty()) {
-                            isValid = false;
-
-
-                        }
-                    }
+                trackA = new ArrayStack<>(size);
+                for (int i = size; i > 0; i--) {
+                    trackA.push(i);
                 }
-            }
-            if(isValid){
-                System.out.println("Yes");
-            }
-            else {
-                System.out.println("No");
+                station = new ArrayStack<>(size);
+                System.out.println();
+            } else {
+                System.out.println("Ran");
+//                String tempLine = line.replaceAll("\\s+", "");
+//                boolean isValid = true;
+//                while (tempLine.length() > 0) {
+//                    if(trackA.isEmpty()){
+//                        System.out.println("You done goof");
+//                    }
+//                    if (!trackA.isEmpty() && Integer.parseInt(tempLine.charAt(0) + "") == trackA.peek()) {
+//                        trackA.pop();
+//                        tempLine = tempLine.substring(1);
+//                    } else {
+//                        if (!trackA.isEmpty()) {
+//                            station.push(trackA.pop());
+//                        } else {
+//                            if (Integer.parseInt(tempLine.charAt(0) + "") == station.peek()) {
+//                                station.pop();
+//                                tempLine = tempLine.substring(1);
+//                            } else {
+//                                isValid = false;
+//                                tempLine = "";
+//                            }
+//                        }
+//                    }
+//                }
+//                if (isValid) {
+//                    System.out.println("Yes");
+//                } else {
+//
+//                    System.out.println("No");
+//                }
             }
         }
     }
